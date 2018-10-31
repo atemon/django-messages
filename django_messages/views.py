@@ -123,6 +123,8 @@ def reply(request, message_id, form_class=ComposeForm,
             'subject': subject_template % {'subject': parent.subject},
             'recipient': [parent.sender,]
             })
+    print("form =>", dir(form))
+    # print(type(form), form)
     return render(request, template_name, {
         'form': form,
     })

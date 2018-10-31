@@ -15,7 +15,7 @@ User = get_user_model()
 class CommaSeparatedUserInput(widgets.Input):
     input_type = 'text'
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, **kwargs):
         if value is None:
             value = ''
         elif isinstance(value, (list, tuple)):
@@ -63,3 +63,6 @@ class CommaSeparatedUserField(forms.Field):
         elif isinstance(value, (list, tuple)):
             value = (', '.join([getattr(user, get_username_field()) for user in value]))
         return value
+
+    def render(self, name, value, attrs=None, renderer=None, **kwargs):
+        return super(CommaSeparatedUserInput, self).render(name, value, attrs, **kwargs)

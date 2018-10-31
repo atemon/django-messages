@@ -80,8 +80,9 @@ class Message(models.Model):
 
     # @permalink
     def get_absolute_url(self):
-        return reverse('messages_detail', [self.id])
-    # get_absolute_url = models.permalink(get_absolute_url)
+        return reverse('messages_detail', args=[self.id])
+
+    # get_absolute_url = reverse(get_absolute_url)
 
     def save(self, **kwargs):
         if not self.id:
